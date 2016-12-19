@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css"/>
+		
+			
+		
+	</head>
+	<body ng-controller="myCtrl">
+		<!--<ul>
+			<li ng-repeat="provice in provices">{{provice.name}}
+			   <ul>
+			   	   <li ng-repeat="city in provice.citys">{{city.name}}</li>
+			   </ul>
+			</li>
+		</ul>-->
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> 
+   <div class="panel panel-default" ng-repeat="provice in provices">
+    <div class="panel-heading" role="tab" id="headingThree" >
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseThree">
+          {{provice.name}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{$index}}" class="panel-collapse collapse {{$index==2?'in':''}}" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+           <ul class="list-group">
+                <li class="list-group-item" ng-repeat="city in provice.citys">{{city.name}}</li>
+           </ul>
+      </div>
+    </div>
+  </div>
+</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>		
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		var app=angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope){
+			var provices=[
+			    {
+			    	"name":"浙江",
+			    	"citys":[
+			    	   {"name":"精华"},
+			    	   {"name":"杭州"},
+			    	   {"name":"苏州"}
+			    	]
+			    },
+			    {
+			    	"name":"河南",
+			    	"citys":[
+			    	   {"name":"郑州"},
+			    	   {"name":"开封"},
+			    	   {"name":"洛阳"}
+			    	]
+			    },
+			    {
+			    	"name":"湖南",
+			    	"citys":[
+			    	   {"name":"长沙"},
+			    	   {"name":"岳阳"},
+			    	   {"name":"邵阳"}
+			    	]
+			    }
+			];
+			$scope.provices=provices;
+		})
+	</script>	
+	
+</html>
